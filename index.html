@@ -86,12 +86,10 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     }
 
-    a {
-      text-decoration: none;
-    }
-
-    .button-group a + a {
-      margin-top: 1rem;
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
 
     .footer {
@@ -147,9 +145,8 @@
     <h2>Welcome to QuickPay</h2>
     <p>Buy Airtime and Data with ease</p>
     <div class="button-group">
-      <a href="login.html"><button class="primary-btn">Login</button></a>
-      <p></p>
-      <a href="signup.html"><button class="primary-btn">Sign Up</button></a>
+      <button class="primary-btn" onclick="window.location.href='login.html'">Login</button>
+      <button class="primary-btn" onclick="window.location.href='signup.html'">Sign Up</button>
     </div>
   </main>
 
