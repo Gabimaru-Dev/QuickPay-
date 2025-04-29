@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction Done</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      animation: fadeIn 0.5s ease-in;
+    }.done-container {
+  text-align: center;
+  animation: popIn 0.6s ease-in-out;
+}
+
+.done-container h1 {
+  font-size: 3rem;
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.done-container p {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.branding {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  font-size: 0.75rem;
+  color: #999;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="done-container">
+    <h1>Done</h1>
+    <p>Your transaction was successful.</p>
+  </div>
+  <div class="branding">QuickPay</div>  <script>
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 3000);
+  </script></body>
+</html>

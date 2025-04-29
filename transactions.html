@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaction History - QuickPay</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" />
+  <style>
+    body {
+      font-family: 'Playfair Display', serif;
+      background-color: #fff;
+      color: #333;
+    }.transactions-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+h2 {
+  text-align: center;
+  color: #d32f2f;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.transaction-card {
+  background: #f9f9f9;
+  border-left: 5px solid #d32f2f;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.transaction-card:hover {
+  transform: scale(1.02);
+}
+
+.transaction-type {
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+.transaction-amount {
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}
+
+.transaction-date {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+  <div class="transactions-container">
+    <h2>Your Transactions</h2>
+    <div id="transactionList"></div>
+  </div>  <script>
+    const transactionList = document.getElementById('transactionList');
+    const transactions = JSON.parse(localStorage.getItem('quickpay_transactions')) || [];
+
+    transactions.reverse().forEach(tx => {
+      const card = document.createElement('div');
+      card.className = 'transaction-card';
+      card.innerHTML = `
+        <div class="transaction-type">${tx.type}</div>
+        <div class="transaction-amount">₦${tx.amount}</div>
+        <div class="transaction-date">${new Date(tx.date).toLocaleString()}</div>
+      `;
+      transactionList.appendChild(card);
+    });
+  </script></body>
+</html>

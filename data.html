@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Data - QuickPay</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #d32f2f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 16px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .bundles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+
+    .bundle {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 16px;
+      border: 2px solid #d32f2f;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s;
+    }
+
+    .bundle:hover {
+      background-color: #ffe5e5;
+      transform: scale(1.05);
+    }
+
+    .bundle.active {
+      background-color: #d32f2f;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #b71c1c;
+    }
+
+    #loadingScreen, #doneScreen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: white;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      flex-direction: column;
+    }
+
+    #doneScreen h1 {
+      color: green;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    #doneScreen small {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>QuickPay - Buy Data</header>
+
+  <div class="container">
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" placeholder="e.g. 08123456789"/>
+
+    <label for="network">Network</label>
+    <select id="network">
+      <option value="MTN">MTN</option>
+      <option value="Airtel">Airtel</option>
+      <option value="Glo">Glo</option>
+      <option value="9mobile">9mobile</option>
+    </select>
+
+    <label>Choose a Bundle</label>
+    <div class="bundle" data-amount="50" data-data="100MB">₦50<br>100MB</div>
+<p></p>
+<div class="bundle" data-amount="100" data-data="250MB">₦100<br>250MB</div>
+<p></p>
+<div class="bundle" data-amount="150" data-data="500MB">₦150<br>500MB</div>
+<p></p>
+<div class="bundle" data-amount="200" data-data="1GB">₦200<br>1GB</div>
+<p></p>
+<div class="bundle" data-amount="300" data-data="2GB">₦300<br>2GB</div>
+<p></p>
+<div class="bundle" data-amount="400" data-data="3GB">₦400<br>3GB</div>
+<p></p>
+<div class="bundle" data-amount="500" data-data="5GB">₦500<br>5GB</div>
+<p></p>
+<div class="bundle" data-amount="700" data-data="10GB">₦700<br>10GB</div>
+<p></p>
+<div class="bundle" data-amount="1000" data-data="20GB">₦1000<br>20GB</div>
+<p></p>
+<div class="bundle" data-amount="1500" data-data="30GB">₦1500<br>30GB</div>
+</div>
+
+    <br>
+    <button onclick="purchaseData()">Buy Data</button>
+  </div>
+
+  <!-- Loading and Done Screens -->
+  <div id="loadingScreen" class="flex">
+    <h1>Processing...</h1>
+  </div>
+  <div id="doneScreen" class="flex">
+    <h1>Done</h1>
+    <small>QuickPay</small>
+  </div>
+
+  <script>
+    let selectedBundle = null;
+    let balance = parseFloat(localStorage.getItem("balance") || "0");
+
+    document.querySelectorAll(".bundle").forEach(b => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll(".bundle").forEach(el => el.classList.remove("active"));
+        b.classList.add("active");
+        selectedBundle = {
+          amount: parseFloat(b.dataset.amount),
+          data: b.dataset.data
+        };
+      });
+    });
+
+    function purchaseData() {
+      const phone = document.getElementById("phone").value.trim();
+      const network = document.getElementById("network").value;
+
+      if (!phone || !selectedBundle) {
+        alert("Please fill all fields and choose a data bundle.");
+        return;
+      }
+
+      if (selectedBundle.amount > balance) {
+        alert("Insufficient funds. Please fund your wallet.");
+        return;
+      }
+
+      document.getElementById("loadingScreen").style.display = "flex";
+
+      setTimeout(() => {
+        balance -= selectedBundle.amount;
+        localStorage.setItem("balance", balance.toFixed(2));
+
+        // Save to transaction history
+        const history = JSON.parse(localStorage.getItem("transactions") || "[]");
+        history.push({
+          type: "Data",
+          amount: selectedBundle.amount,
+          details: `${network} ${selectedBundle.data} to ${phone}`,
+          date: new Date().toLocaleString()
+        });
+        localStorage.setItem("transactions", JSON.stringify(history));
+
+        document.getElementById("loadingScreen").style.display = "none";
+        document.getElementById("doneScreen").style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 3000);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

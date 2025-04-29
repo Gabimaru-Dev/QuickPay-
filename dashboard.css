@@ -1,0 +1,145 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Header */
+.app-header {
+  background-color: #d32f2f;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.app-header .profile {
+  display: flex;
+  align-items: center;
+}
+
+.app-header .profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.app-header .balance {
+  text-align: right;
+}
+
+.app-header .balance h1 {
+  font-size: 30px;
+  margin-top: 5px;
+}
+
+.app-header .balance button {
+  background-color: #fff;
+  color: #d32f2f;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.app-header .balance button:hover {
+  background-color: #f2f2f2;
+}
+
+/* Dashboard Section */
+.dashboard {
+  margin-top: 100px; /* Adjust for header */
+  padding: 30px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.action-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.action-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.action-card span {
+  display: block;
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Footer */
+.app-footer {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.app-footer nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.app-footer nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: color 0.3s;
+}
+
+.app-footer nav a:hover,
+.app-footer nav a.active {
+  color: #d32f2f;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+}

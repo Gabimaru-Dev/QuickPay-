@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickPay - Fast. Reliable. Secure.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <meta name="description" content="QuickPay - Instantly buy Airtime and Data for MTN, Airtel, and more. Secure and simple." />
+  <meta name="theme-color" content="#d32f2f" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f9fafb, #eef1f5);
+      margin: 0;
+      padding: 0;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: #d32f2f;
+      color: #fff;
+      animation: fadeInDown 1s ease;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .header p {
+      font-size: 1.25rem;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .auth-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .auth-container h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .auth-container p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .primary-btn {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      width: 220px;
+      max-width: 80%;
+    }
+
+    .primary-btn:hover {
+      background-color: #b71c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .button-group a + a {
+      margin-top: 1rem;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+      background: #f4f4f4;
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 2.2rem;
+      }
+
+      .primary-btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <h1>QuickPay</h1>
+    <p>Fast. Reliable. Secure.</p>
+  </header>
+
+  <main class="auth-container">
+    <h2>Welcome to QuickPay</h2>
+    <p>Buy Airtime and Data with ease</p>
+    <div class="button-group">
+      <a href="login.html"><button class="primary-btn">Login</button></a>
+      <p></p>
+      <a href="signup.html"><button class="primary-btn">Sign Up</button></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 QuickPay Technologies. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

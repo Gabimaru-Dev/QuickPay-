@@ -1,0 +1,390 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* Use a clean, modern sans-serif font */
+  background-color: #f4f7fa; /* Softer background color */
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Header */
+.app-header {
+  background-color: #333;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header .profile {
+  display: flex;
+  align-items: center;
+}
+
+.app-header .profile h2 {
+  margin-left: 15px;
+  font-size: 1.5rem;
+}
+
+.app-header .balance {
+  text-align: right;
+}
+
+.app-header .balance h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.app-header .fund-btn {
+  background-color: #d32f2f;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.app-header .fund-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Dashboard */
+.dashboard {
+  padding: 40px 20px;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.action-card {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.action-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.action-card:hover img {
+  transform: scale(1.1);
+}
+
+.action-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.action-card p {
+  font-size: 0.95rem;
+  color: #777;
+}
+
+/* Footer */
+.app-footer {
+  background-color: #333;
+  padding: 15px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.app-footer nav {
+  display: flex;
+  justify-content: center;
+}
+
+.app-footer nav a {
+  color: white;
+  padding: 12px 20px;
+  margin: 0 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.app-footer nav a.active {
+  background-color: #d32f2f;
+  border-radius: 5px;
+}
+
+.app-footer nav a:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+/* Form Inputs and Buttons */
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #d32f2f;
+  outline: none;
+}
+
+button {
+  padding: 14px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #b71c1c;
+  transform: scale(1.05);
+}
+
+/* Switch Authentication */
+.switch-auth {
+  text-align: center;
+}
+
+.switch-auth a {
+  color: #d32f2f;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.switch-auth a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.main-content {
+  animation: fadeIn 1s ease;
+}
+
+/* Login/Signup Styles */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 40px;
+  text-align: center;
+}
+
+.auth-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.auth-container form {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.auth-btn {
+  padding: 14px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.auth-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Settings Page */
+.settings-container {
+  padding: 40px;
+}
+
+.settings-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.settings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.settings-list li {
+  margin: 15px 0;
+}
+
+.settings-list a {
+  font-size: 1.3rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.settings-list a:hover {
+  color: #d32f2f;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 30px;
+  background-color: #d32f2f;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.back-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Fund Account Page */
+.fund-container {
+  padding: 40px;
+}
+
+.fund-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.account-box {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.account-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.account-number,
+.bank-name {
+  font-size: 1.3rem;
+  color: #555;
+}
+
+.info-text {
+  font-size: 1rem;
+  color: #777;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 30px;
+  background-color: #d32f2f;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+
+.back-btn:hover {
+  background-color: #b71c1c;
+}
+
+/* Transaction History Page */
+.transactions-container {
+  padding: 40px;
+}
+
+.transactions-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.empty-history {
+  font-size: 1.6rem;
+  color: #777;
+  text-align: center;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 30px;
+  background-color
