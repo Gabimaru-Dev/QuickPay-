@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Simulate user data (In a real application, this would come from your server or localStorage)
   const username = localStorage.getItem("username") || "John Doe"; // Default to "John Doe" if not set
-  const balance = parseFloat(localStorage.getItem("balance")) || 200.00; // Default to 0 if not set
+  const balance = parseFloat(localStorage.getItem("balance")) || 0.00; // Default to 0 if not set
 
   // Update dashboard with user's name and wallet balance
   document.getElementById("user-name").textContent = username;
