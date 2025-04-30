@@ -68,12 +68,39 @@
     .submit-btn:hover {
       background: #b71c1c;
     }
+
+    /* Loading and Done Screens */
+    #loadingScreen, #doneScreen {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: white;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      flex-direction: column;
+    }
+
+    #doneScreen h1 {
+      color: green;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    #doneScreen small {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
   <header class="app-header">
     <h2 style="text-align:center; padding: 1rem; color: #d32f2f;">Recharge Airtime</h2>
-  </header>  <main class="container">
+  </header>  
+  <main class="container">
     <section>
       <h3 class="section-title">Choose Bundle</h3>
       <div class="bundles" id="bundle-options">
@@ -88,12 +115,23 @@
         <div class="bundle" data-amount="7000">₦7,000</div>
         <div class="bundle" data-amount="10000">₦10,000</div>
       </div>
-    </section><section class="form-section">
-  <input type="tel" id="phone" placeholder="Enter Phone Number" />
-  <button class="submit-btn" onclick="submitAirtimeRecharge()">Recharge Now</button>
-</section>
+    </section>
+    <section class="form-section">
+      <input type="tel" id="phone" placeholder="Enter Phone Number" />
+      <button class="submit-btn" onclick="submitAirtimeRecharge()">Recharge Now</button>
+    </section>
+  </main>
 
-  </main>  <script>
+  <!-- Loading and Done Screens -->
+  <div id="loadingScreen" class="flex">
+    <h1>Processing...</h1>
+  </div>
+  <div id="doneScreen" class="flex">
+    <h1>Done</h1>
+    <small>QuickPay</small>
+  </div>
+
+  <script>
     let selectedAmount = null;
 
     document.querySelectorAll('.bundle').forEach(bundle => {
@@ -112,16 +150,27 @@
       if (!/^\d{11}$/.test(phone)) return alert('Enter a valid 11-digit phone number.');
       if (selectedAmount > balance) return alert('Insufficient funds. Please fund your wallet.');
 
-      // Deduct balance
-      localStorage.setItem('balance', (balance - selectedAmount).toFixed(2));
+      // Show loading screen
+      document.getElementById("loadingScreen").style.display = "flex";
 
-      // Save to history
-      const tx = JSON.parse(localStorage.getItem('transactions') || '[]');
-      tx.push({ type: 'Airtime', amount: selectedAmount, phone, date: new Date().toLocaleString() });
-      localStorage.setItem('transactions', JSON.stringify(tx));
+      setTimeout(() => {
+        // Deduct balance
+        localStorage.setItem('balance', (balance - selectedAmount).toFixed(2));
 
-      // Show loading then done
-      window.location.href = 'done.html';
+        // Save to transaction history
+        const tx = JSON.parse(localStorage.getItem('transactions') || '[]');
+        tx.push({ type: 'Airtime', amount: selectedAmount, phone, date: new Date().toLocaleString() });
+        localStorage.setItem('transactions', JSON.stringify(tx));
+
+        // Hide loading and show done screen
+        document.getElementById("loadingScreen").style.display = "none";
+        document.getElementById("doneScreen").style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';  // Redirect to dashboard
+        }, 3000);
+      }, 2000); // Simulate a 2-second processing time
     }
-  </script></body>
+  </script>
+</body>
 </html>
